@@ -75,6 +75,6 @@ int PhysicalObject::getAngle()
 
 QPoint PhysicalObject::getPosition()
 {
-
+    return _position;
 }
 

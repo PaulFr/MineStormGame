@@ -1,7 +1,7 @@
 
 QT       += core gui
 
-CONFIG+=C++11
+CONFIG+=C++11 console debug
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 

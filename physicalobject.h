@@ -20,11 +20,11 @@ public:
      * @brief draw the object
      * @param painter : QPainter used to draw the object in
      */
-    void draw(QPainter &painter);
+    virtual void draw(QPainter &painter);
     /**
      * @brief step : called each time we are entering a new frame
      */
-    void step();
+    virtual void step();
 
     /**
      * @brief isIntersecting : return wether the object is intersecting another one or not

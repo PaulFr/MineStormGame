@@ -48,7 +48,7 @@ void MineStormGame::draw(QPainter &painter, QRect &rect)
     //draw spaceship
     _spaceship->draw(painter);
 
-    //draw the mines
+    //animate the mines
     for(auto &mine: _mines){
         mine.draw(painter);
     }
