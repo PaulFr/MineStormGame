@@ -33,6 +33,7 @@ Controller::Controller(Game *game, QWidget *parent):QWidget(parent),_game(game)
 }
 void Controller::start() {
     _game->start();
+    emit started();
 }
 
 void Controller::pause(){

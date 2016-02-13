@@ -10,7 +10,8 @@ class Controller:public QWidget
     Q_OBJECT
 public:
     Controller(Game *game, QWidget *parent = nullptr);
-
+signals:
+    void started();
 private slots:
     void start();
     void pause();

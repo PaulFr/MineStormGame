@@ -49,3 +49,7 @@ void GameBoard::mouseReleaseEvent(QMouseEvent * event) {
    _game->mouseReleased(x,y);
 
 }
+
+void GameBoard::start(){
+    setFocus();
+}

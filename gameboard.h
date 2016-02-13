@@ -16,7 +16,7 @@ public:
 signals:
 
 public slots:
-
+    void start();
 
 protected:
     void paintEvent(QPaintEvent *);

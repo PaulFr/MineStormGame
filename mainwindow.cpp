@@ -9,6 +9,8 @@ MainWindow::MainWindow(Game *game,QWidget *parent) :
     auto window = new QWidget(this);
     auto controller = new Controller(game, window);
     auto gameboard = new GameBoard(game,window);
+
+    connect(controller,SIGNAL(started()),gameboard,SLOT(start()));
     gameboard->setSizePolicy(QSizePolicy ::Expanding , QSizePolicy ::Expanding);
 
 
