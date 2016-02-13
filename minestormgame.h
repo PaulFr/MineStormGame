@@ -4,6 +4,7 @@
 #include <QPainter>
 #include <QMessageBox>
 #include "game.h"
+#include "spaceship.h"
 
 using namespace std;
 
@@ -19,11 +20,17 @@ class MineStormGame : public Game
         void mouseReleased( int x, int y) override;
         void mouseMoved(int x, int y) override;
         ~MineStormGame();
-
-    private:
+        bool keyHandler(int key, bool isPressed);
+private:
 
         virtual void step();
         void initialize();
+        Spaceship *_spaceship;
+        bool _keyLeft = false;
+        bool _keyRight = false;
+        bool _keyUp = false;
+        bool _keyDown = false;
+        bool _keySpace = false;
 
 };
 

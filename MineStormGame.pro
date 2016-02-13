@@ -14,12 +14,16 @@ SOURCES += main.cpp\
     controller.cpp \
     gameboard.cpp \
     game.cpp \
-    minestormgame.cpp
+    minestormgame.cpp \
+    physicalobject.cpp \
+    spaceship.cpp
 
 HEADERS  += mainwindow.h \
     controller.h \
     gameboard.h \
     game.h \
-    minestormgame.h
+    minestormgame.h \
+    physicalobject.h \
+    spaceship.h
 
 FORMS    +=
