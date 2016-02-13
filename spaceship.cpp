@@ -38,11 +38,6 @@ void Spaceship::updateAcceleration(bool accelerate) {
     }
     setSpeed(_velocity);
 
-
-    /*if (getSpeed() > _maxspeed) {
-        setDirection(_angle);
-        setSpeed(_maxspeed);
-    }*/
 }
 
 QPolygon Spaceship::getPolygonShape(){
