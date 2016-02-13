@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include "game.h"
 #include "spaceship.h"
+#include "mine.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ private:
         virtual void step();
         void initialize();
         Spaceship *_spaceship;
+        Mine *_mine;
         bool _keyLeft = false;
         bool _keyRight = false;
         bool _keyUp = false;

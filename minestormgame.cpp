@@ -14,6 +14,9 @@ void MineStormGame::initialize()
 {
     _spaceship = new Spaceship(QPoint(size().width()/2, size().height()/2));
     _spaceship->setBoundaries(size());
+
+    _mine = new Mine(50, QPoint(size().width()/2, size().height()/2));
+
 }
 
 void MineStormGame::step()
@@ -38,6 +41,8 @@ void MineStormGame::draw(QPainter &painter, QRect &rect)
 
     //draw spaceship
     _spaceship->draw(painter);
+    //1 mine to test
+    _mine->draw(painter);
 
 }
 
