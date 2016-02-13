@@ -3,9 +3,11 @@
 
 #include <QPainter>
 #include <QMessageBox>
+#include <vector>
 #include "game.h"
 #include "spaceship.h"
 #include "mine.h"
+#include <random>
 
 using namespace std;
 
@@ -22,6 +24,7 @@ class MineStormGame : public Game
         void mouseMoved(int x, int y) override;
         ~MineStormGame();
         bool keyHandler(int key, bool isPressed);
+        void spawnMines(int size, int nbItem);
 private:
 
         virtual void step();
@@ -33,7 +36,7 @@ private:
         bool _keyUp = false;
         bool _keyDown = false;
         bool _keySpace = false;
-
+        vector<Mine> _mines;
 };
 
 #endif // MINESTORMGAME_H

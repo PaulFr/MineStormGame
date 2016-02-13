@@ -15,8 +15,9 @@ void MineStormGame::initialize()
     _spaceship = new Spaceship(QPoint(size().width()/2, size().height()/2));
     _spaceship->setBoundaries(size());
 
-    _mine = new Mine(50, QPoint(size().width()/2, size().height()/2));
-
+    spawnMines(8,5);
+    spawnMines(13, 20);
+    spawnMines(20, 5);
 }
 
 void MineStormGame::step()
@@ -31,6 +32,11 @@ void MineStormGame::step()
         _spaceship->updateAcceleration(false);
 
     _spaceship->step();
+
+    //draw the mines
+    for(auto &mine: _mines){
+        mine.step();
+    }
 }
 
 void MineStormGame::draw(QPainter &painter, QRect &rect)
@@ -41,8 +47,11 @@ void MineStormGame::draw(QPainter &painter, QRect &rect)
 
     //draw spaceship
     _spaceship->draw(painter);
-    //1 mine to test
-    _mine->draw(painter);
+
+    //draw the mines
+    for(auto &mine: _mines){
+        mine.draw(painter);
+    }
 
 }
 
@@ -89,4 +98,14 @@ void MineStormGame::mouseReleased(int x, int y)
 void MineStormGame::mouseMoved(int x, int y)
 {
 
+}
+
+void MineStormGame::spawnMines(int sizeItem, int nbItem){
+    for(int i =0; i < nbItem; i++){
+        Mine iMine(Mine(sizeItem, QPoint(rand()%size().width(),rand()%size().height())));
+        iMine.setAngle(rand()%360);
+        iMine.setSpeed(2+(rand()%15));
+        iMine.setBoundaries(size());
+        _mines.push_back(iMine);
+    }
 }
