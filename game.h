@@ -72,7 +72,6 @@ public:
     virtual void mouseReleased( int x, int y) = 0;
     virtual void mouseMoved(int x, int y) = 0;
     /**
-    /**
      * @brief keyPressed  appélée quand l'utilisateur presse une touche
      * @param key code de la touche. Tous les codes sont disponible dans [la documentation Qt](http://doc.qt.io/qt-5/qt.html#Key-enum)
      *
