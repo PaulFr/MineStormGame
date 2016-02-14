@@ -12,6 +12,8 @@ MineStormGame::~MineStormGame()
 
 void MineStormGame::initialize()
 {
+    _mines.clear();
+
     _spaceship = new Spaceship(QPoint(size().width()/2, size().height()/2));
     _spaceship->setBoundaries(size());
 
