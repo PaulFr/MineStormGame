@@ -32,12 +32,34 @@ void MineStormGame::step()
         _spaceship->updateAcceleration(true);
     if(_keyDown)
         _spaceship->updateAcceleration(false);
+    if(_keySpace)
+        fireBullet();
 
     _spaceship->step();
 
-    //draw the mines
+    //animate the mines
     for(auto &mine: _mines){
         mine.step();
+    }
+
+    //animate the bullets
+    auto bullet = begin(_bullets);
+    while (bullet != end(_bullets)) {
+        bullet->step();
+        if (!bullet->isAlive())
+            bullet = _bullets.erase(bullet);
+        else
+            ++bullet;
+    }
+}
+
+void MineStormGame::fireBullet(){
+    ++_lastFire;
+    if(_lastFire%5 == 0 || _bullets.size() == 0){
+        Bullet currentBullet(Bullet(_spaceship->getPosition(), _spaceship->getAngle(), 60));
+        currentBullet.setSpeed(10);
+        currentBullet.setBoundaries(size());
+        _bullets.push_back(currentBullet);
     }
 }
 
@@ -50,16 +72,20 @@ void MineStormGame::draw(QPainter &painter, QRect &rect)
     //draw spaceship
     _spaceship->draw(painter);
 
-    //animate the mines
+    //draw the mines
     for(auto &mine: _mines){
         mine.draw(painter);
+    }
+
+    //draw the bullets
+    for(auto &bullet: _bullets){
+        bullet.draw(painter);
     }
 
 }
 
 void MineStormGame::mousePressed(int x, int y)
 {
-
 }
 
 void MineStormGame::keyPressed(int key)

@@ -24,6 +24,7 @@ void PhysicalObject::step()
     _position.setX(_position.x()+_speed.x());
     _position.setY(_position.y()+_speed.y());
 
+    //Checking out the boundaries and respawning if the object get out of it
     if(_position.y() <= 0){
         _position.setY(_position.y() + _boundaries.height());
     }

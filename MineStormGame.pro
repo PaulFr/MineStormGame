@@ -17,7 +17,9 @@ SOURCES += main.cpp\
     minestormgame.cpp \
     physicalobject.cpp \
     spaceship.cpp \
-    mine.cpp
+    mine.cpp \
+    ephemeralobject.cpp \
+    bullet.cpp
 
 HEADERS  += mainwindow.h \
     controller.h \
@@ -26,6 +28,6 @@ HEADERS  += mainwindow.h \
     minestormgame.h \
     physicalobject.h \
     spaceship.h \
-    mine.h
-
-FORMS    +=
+    mine.h \
+    ephemeralobject.h \
+    bullet.h

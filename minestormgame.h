@@ -7,6 +7,7 @@
 #include "game.h"
 #include "spaceship.h"
 #include "mine.h"
+#include "bullet.h"
 #include <random>
 
 using namespace std;
@@ -25,6 +26,8 @@ class MineStormGame : public Game
         ~MineStormGame();
         bool keyHandler(int key, bool isPressed);
         void spawnMines(int size, int nbItem);
+protected:
+        void fireBullet();
 private:
 
         virtual void step();
@@ -36,7 +39,9 @@ private:
         bool _keyUp = false;
         bool _keyDown = false;
         bool _keySpace = false;
+        int _lastFire = 0;
         vector<Mine> _mines;
+        vector<Bullet> _bullets;
 };
 
 #endif // MINESTORMGAME_H
