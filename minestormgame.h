@@ -7,6 +7,8 @@
 #define BURST_LIFETIME 40
 #define BULLET_LIFETIME 30
 #define BULLET_SPEED 15
+#define TIME_BEFORE_RESPAWN 60
+#define PLAYER_LIVES 4
 
 #include <QPainter>
 #include <QMessageBox>
@@ -68,6 +70,8 @@ private:
         bool _keySpace = false;
         bool _playerAlive = true;
         int _lastFire = 0;
+        int _lives;
+        int _counterBeforeRespawn = 0;
         vector<Mine> _mines;
         vector<Bullet> _bullets;
         vector<Burst> _bursts;

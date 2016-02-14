@@ -1,6 +1,6 @@
 #include "spaceship.h"
 
-Spaceship::Spaceship(QPoint position):PhysicalObject(position)
+Spaceship::Spaceship(QPoint position):PhysicalObject(position), _defaultPosition(position)
 {
     _angle = 0;
 }
@@ -20,6 +20,13 @@ QPoint Spaceship::getAbsolutePoint(QPoint relativePoint) const {
 
     return QPoint(sin((_angle-90)*M_PI/180)*(absolutePoint.x()-_position.x()) - cos((_angle-90)*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.x(),
                   cos((_angle-90)*M_PI/180)*(absolutePoint.x()-_position.x()) + sin((_angle-90)*M_PI/180)*(absolutePoint.y()-_position.y()) + _position.y());
+}
+
+void Spaceship::respawn(){
+    _position = _defaultPosition;
+    _angle = 0;
+    _speed = QPoint(0,0);
+    _velocity = 0;
 }
 
 void Spaceship::updateAcceleration(bool accelerate) {

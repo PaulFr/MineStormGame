@@ -24,9 +24,14 @@ public:
      * @param accelerate : true if positive acceleration, false otherwise
      */
     void updateAcceleration(bool accelerate);
+    /**
+     * @brief respawn : Reset the spaceship to default position
+     */
+    void respawn();
 protected:
     QPolygon getPolygonShape();
     int _velocity = 0;
+    QPoint _defaultPosition;
 private:
     /**
      * @brief getAbsolutePoint : Get the absolute point, with angle

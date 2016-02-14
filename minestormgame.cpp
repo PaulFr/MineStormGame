@@ -24,6 +24,9 @@ void MineStormGame::initialize()
     _spaceship->setBoundaries(size());
     _playerAlive = true;
 
+    _lives = PLAYER_LIVES;
+    _counterBeforeRespawn = 0;
+
 }
 
 void MineStormGame::step()
@@ -41,6 +44,12 @@ void MineStormGame::step()
             fireBullet();
 
         _spaceship->step();
+    }else{
+        _counterBeforeRespawn++;
+        if(_counterBeforeRespawn >= TIME_BEFORE_RESPAWN){
+            _playerAlive = true;
+            _spaceship->respawn();
+        }
     }
     //animate the mines
     auto mine = begin(_mines);
@@ -49,7 +58,7 @@ void MineStormGame::step()
         if(_playerAlive && mine->isAlive() && mine->isIntersecting(*_spaceship)){
             createBurst(mine->getPosition());
             createBurst(_spaceship->getPosition());
-
+            _counterBeforeRespawn = 0;
             _playerAlive = false;
             mine = _mines.erase(mine);
         }else{
