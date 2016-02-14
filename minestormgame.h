@@ -8,6 +8,7 @@
 #include "spaceship.h"
 #include "mine.h"
 #include "bullet.h"
+#include "burst.h"
 #include <random>
 
 using namespace std;
@@ -42,6 +43,7 @@ private:
         int _lastFire = 0;
         vector<Mine> _mines;
         vector<Bullet> _bullets;
+        vector<Burst> _bursts;
 };
 
 #endif // MINESTORMGAME_H

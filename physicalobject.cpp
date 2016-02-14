@@ -1,6 +1,5 @@
 #include "physicalobject.h"
 #include <QPainterPath>
-#include <QColor>
 #include <QBrush>
 
 PhysicalObject::PhysicalObject(QPoint position, int angle, int speed):_position(position)
@@ -11,7 +10,7 @@ PhysicalObject::PhysicalObject(QPoint position, int angle, int speed):_position(
 
 void PhysicalObject::draw(QPainter &painter)
 {
-    painter.setBrush(QBrush(QColor(255,255,255)));
+    painter.setBrush(QBrush(_color));
     QPainterPath path;
     path.addPolygon(this->getPolygonShape());
 

@@ -57,6 +57,11 @@ void MineStormGame::step()
                 if(mine->isAlive() && mine->isIntersecting(*bullet)){
                     //The bullet got it
                     isShot = true;
+
+                    //new burst
+                    Burst nBurst(Burst(mine->getPosition(), 40));
+                    _bursts.push_back(nBurst);
+
                     mine = _mines.erase(mine);
                 }else{
                     ++mine;
@@ -68,6 +73,17 @@ void MineStormGame::step()
                 ++bullet;
             }
 
+        }
+    }
+
+    //animate bursts
+    auto burst = begin(_bursts);
+    while(burst != end(_bursts)){
+        burst->step();
+        if (!burst->isAlive()){
+            burst = _bursts.erase(burst);
+        }else{
+            ++burst;
         }
     }
 }
@@ -99,6 +115,11 @@ void MineStormGame::draw(QPainter &painter, QRect &rect)
     //draw the bullets
     for(auto &bullet: _bullets){
         bullet.draw(painter);
+    }
+
+    //draw the air (maybe space but that is weird considering there is no air in space) bursts
+    for(auto &burst: _bursts){
+        burst.draw(painter);
     }
 
 }

@@ -6,6 +6,7 @@
 #include <QPoint>
 #include <QPolygon>
 #include <QSize>
+#include <QColor>
 
 class PhysicalObject
 {
@@ -70,6 +71,7 @@ protected:
     int _angle;
     QPoint _speed = QPoint(0,0);
     virtual QPolygon getPolygonShape() = 0;
+    QColor _color = QColor(255,255,255);
 
 };
 
