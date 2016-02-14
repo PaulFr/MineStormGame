@@ -1,4 +1,5 @@
 #include "minestormgame.h"
+#include <QMessageBox>
 
 MineStormGame::MineStormGame(const QSize &size, QObject *parent):Game(size,parent)
 {
@@ -117,6 +118,9 @@ void MineStormGame::step()
 
     //checks lives
     if(_lives <= 0){
+        QMessageBox loseMsg;
+        loseMsg.setText("Dommage, t'as perdu !");
+        loseMsg.exec();
         reset();
     }
 }
