@@ -2,14 +2,14 @@
 
 Burst::Burst(QPoint position, int lifeTime):EphemeralObject(position, lifeTime)
 {
-    _color = QColor(255,0,0);
+    _color = QColor(230,214,47);
 }
 
 void Burst::step(){
-    EphemeralObject::step();
-    _expand++;
     _speed.setX(0);
     _speed.setY(0);
+    EphemeralObject::step();
+    _expand++;
 }
 
 QPolygon Burst::getPolygonShape(){

@@ -60,6 +60,7 @@ void MineStormGame::step()
 
                     //new burst
                     Burst nBurst(Burst(mine->getPosition(), 40));
+                    nBurst.setBoundaries(size());
                     _bursts.push_back(nBurst);
 
                     mine = _mines.erase(mine);
@@ -91,8 +92,8 @@ void MineStormGame::step()
 void MineStormGame::fireBullet(){
     ++_lastFire;
     if(_lastFire%5 == 0 || _bullets.size() == 0){
-        Bullet currentBullet(Bullet(_spaceship->getPosition(), _spaceship->getAngle(), 60));
-        currentBullet.setSpeed(10);
+        Bullet currentBullet(Bullet(_spaceship->getPosition(), _spaceship->getAngle(), 30));
+        currentBullet.setSpeed(15);
         currentBullet.setBoundaries(size());
         _bullets.push_back(currentBullet);
     }

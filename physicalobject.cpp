@@ -19,9 +19,11 @@ void PhysicalObject::draw(QPainter &painter)
 
 void PhysicalObject::step()
 {
-    //Moving the object
-    _position.setX(_position.x()+_speed.x());
-    _position.setY(_position.y()+_speed.y());
+    if(_isMovingObject){
+        //Moving the object
+        _position.setX(_position.x()+_speed.x());
+        _position.setY(_position.y()+_speed.y());
+    }
 
     //Checking out the boundaries and respawning if the object get out of it
     if(_position.y() <= 0){
@@ -45,7 +47,8 @@ bool PhysicalObject::isIntersecting(PhysicalObject &physicalObject)
 
 void PhysicalObject::setPosition(QPoint position)
 {
-    _position = position;
+    if(_isMovingObject)
+        _position = position;
 }
 
 void PhysicalObject::setSpeed(int speed)

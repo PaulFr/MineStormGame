@@ -69,6 +69,7 @@ protected:
     QPoint _position;
     QSize _boundaries;
     int _angle;
+    bool _isMovingObject = true;
     QPoint _speed = QPoint(0,0);
     virtual QPolygon getPolygonShape() = 0;
     QColor _color = QColor(255,255,255);

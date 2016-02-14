@@ -9,8 +9,9 @@ public:
     virtual void step() override;
 protected:
     QPolygon getPolygonShape();
+    bool _isMovingObject = false;
 private:
-    int _expand = 6;
+    int _expand = 10;
 };
 
 #endif // BURST_H
