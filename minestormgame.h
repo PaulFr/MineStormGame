@@ -1,6 +1,13 @@
 #ifndef MINESTORMGAME_H
 #define MINESTORMGAME_H
 
+#define MINE_SMALL 8
+#define MINE_AVERAGE 13
+#define MINE_BIG 20
+#define BURST_LIFETIME 40
+#define BULLET_LIFETIME 30
+#define BULLET_SPEED 15
+
 #include <QPainter>
 #include <QMessageBox>
 #include <vector>
@@ -43,6 +50,11 @@ protected:
          * @brief fireBullet : creates a bullet fired by the spaceship
          */
         void fireBullet();
+        /**
+         * @brief createBurst : create a new burst explosion
+         * @param position : position of the burst
+         */
+        void createBurst(QPoint position);
 private:
 
         virtual void step();

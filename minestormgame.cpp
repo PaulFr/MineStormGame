@@ -16,9 +16,9 @@ void MineStormGame::initialize()
     _bullets.clear();
     _bursts.clear();
 
-    spawnMines(8,5);
-    spawnMines(13, 20);
-    spawnMines(20, 5);
+    spawnMines(MINE_SMALL,5);
+    spawnMines(MINE_AVERAGE, 20);
+    spawnMines(MINE_BIG, 5);
 
     _spaceship = new Spaceship(QPoint(size().width()/2, size().height()/2));
     _spaceship->setBoundaries(size());
@@ -47,14 +47,8 @@ void MineStormGame::step()
     while(mine != end(_mines)){
         mine->step();
         if(_playerAlive && mine->isAlive() && mine->isIntersecting(*_spaceship)){
-            Burst nBurst(Burst(mine->getPosition(), 40));
-            nBurst.setBoundaries(size());
-            _bursts.push_back(nBurst);
-
-            nBurst = Burst(_spaceship->getPosition(), 40);
-            nBurst.setBoundaries(size());
-            _bursts.push_back(nBurst);
-
+            createBurst(mine->getPosition());
+            createBurst(_spaceship->getPosition());
 
             _playerAlive = false;
             mine = _mines.erase(mine);
@@ -81,9 +75,7 @@ void MineStormGame::step()
                     isShot = true;
 
                     //new burst
-                    Burst nBurst(Burst(mine->getPosition(), 40));
-                    nBurst.setBoundaries(size());
-                    _bursts.push_back(nBurst);
+                    createBurst(mine->getPosition());
 
                     mine = _mines.erase(mine);
                 }else{
@@ -111,11 +103,17 @@ void MineStormGame::step()
     }
 }
 
+void MineStormGame::createBurst(QPoint position){
+    Burst nBurst(Burst(position, BURST_LIFETIME));
+    nBurst.setBoundaries(size());
+    _bursts.push_back(nBurst);
+}
+
 void MineStormGame::fireBullet(){
     ++_lastFire;
     if(_lastFire%5 == 0 || _bullets.size() == 0){
-        Bullet currentBullet(Bullet(_spaceship->getPosition(), _spaceship->getAngle(), 30));
-        currentBullet.setSpeed(15);
+        Bullet currentBullet(Bullet(_spaceship->getPosition(), _spaceship->getAngle(), BULLET_LIFETIME));
+        currentBullet.setSpeed(BULLET_SPEED);
         currentBullet.setBoundaries(size());
         _bullets.push_back(currentBullet);
     }
