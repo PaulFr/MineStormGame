@@ -27,7 +27,7 @@ void MineStormGame::initialize()
 
     _lives = PLAYER_LIVES;
     _counterBeforeRespawn = 0;
-
+    _score = 0;
 }
 
 void MineStormGame::step()
@@ -91,6 +91,9 @@ void MineStormGame::step()
                     //new burst
                     createBurst(mine->getPosition());
 
+                    //Score is increasing
+                    _score += 10;
+
                     mine = _mines.erase(mine);
                 }else{
                     ++mine;
@@ -147,6 +150,13 @@ void MineStormGame::draw(QPainter &painter, QRect &rect)
     // We set the background color to black
     painter.fillRect(rect, blackColor);
 
+    //Draw the score
+    QPen pen(QPen(QColor(255,255,255)));
+    painter.setPen(pen);
+    painter.drawText(QPoint(30,20), "Points : " + QString::number(_score));
+    pen.setWidth(0);
+    pen.setCosmetic(false);
+    painter.setPen(pen);
     if(_playerAlive){
         //draw spaceship
         _spaceship->draw(painter);

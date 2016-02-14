@@ -72,6 +72,7 @@ private:
         int _lastFire = 0;
         int _lives;
         int _counterBeforeRespawn = 0;
+        int _score = 0;
         vector<Mine> _mines;
         vector<Bullet> _bullets;
         vector<Burst> _bursts;
