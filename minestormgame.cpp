@@ -56,10 +56,14 @@ void MineStormGame::step()
     while(mine != end(_mines)){
         mine->step();
         if(_playerAlive && mine->isAlive() && mine->isIntersecting(*_spaceship)){
+            //Explosions
             createBurst(mine->getPosition());
             createBurst(_spaceship->getPosition());
+            //Player dies
             _counterBeforeRespawn = 0;
             _playerAlive = false;
+            _lives--;
+            //The mine is destroyed
             mine = _mines.erase(mine);
         }else{
             ++mine;
@@ -109,6 +113,11 @@ void MineStormGame::step()
         }else{
             ++burst;
         }
+    }
+
+    //checks lives
+    if(_lives <= 0){
+        reset();
     }
 }
 
