@@ -54,6 +54,7 @@ private:
         bool _keyUp = false;
         bool _keyDown = false;
         bool _keySpace = false;
+        bool _playerAlive = true;
         int _lastFire = 0;
         vector<Mine> _mines;
         vector<Bullet> _bullets;

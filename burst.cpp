@@ -6,8 +6,6 @@ Burst::Burst(QPoint position, int lifeTime):EphemeralObject(position, lifeTime)
 }
 
 void Burst::step(){
-    _speed.setX(0);
-    _speed.setY(0);
     EphemeralObject::step();
     _expand++;
 }

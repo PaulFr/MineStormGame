@@ -13,9 +13,12 @@ MineStormGame::~MineStormGame()
 void MineStormGame::initialize()
 {
     _mines.clear();
+    _bullets.clear();
+    _bursts.clear();
 
     _spaceship = new Spaceship(QPoint(size().width()/2, size().height()/2));
     _spaceship->setBoundaries(size());
+    _playerAlive = true;
 
     spawnMines(8,5);
     spawnMines(13, 20);
@@ -24,23 +27,41 @@ void MineStormGame::initialize()
 
 void MineStormGame::step()
 {
-    if(_keyLeft)
-        _spaceship->increaseOrientation();
-    if(_keyRight)
-        _spaceship->decreaseOrientation();
-    if(_keyUp)
-        _spaceship->updateAcceleration(true);
-    if(_keyDown)
-        _spaceship->updateAcceleration(false);
-    if(_keySpace)
-        fireBullet();
+    if(_playerAlive){
+        if(_keyLeft)
+            _spaceship->increaseOrientation();
+        if(_keyRight)
+            _spaceship->decreaseOrientation();
+        if(_keyUp)
+            _spaceship->updateAcceleration(true);
+        if(_keyDown)
+            _spaceship->updateAcceleration(false);
+        if(_keySpace)
+            fireBullet();
 
-    _spaceship->step();
-
-    //animate the mines
-    for(auto &mine: _mines){
-        mine.step();
+        _spaceship->step();
     }
+    //animate the mines
+    auto mine = begin(_mines);
+    while(mine != end(_mines)){
+        mine->step();
+        if(_playerAlive && mine->isIntersecting(*_spaceship)){
+            Burst nBurst(Burst(mine->getPosition(), 40));
+            nBurst.setBoundaries(size());
+            _bursts.push_back(nBurst);
+
+            nBurst = Burst(_spaceship->getPosition(), 40);
+            nBurst.setBoundaries(size());
+            _bursts.push_back(nBurst);
+
+
+            _playerAlive = false;
+            mine = _mines.erase(mine);
+        }else{
+            ++mine;
+        }
+    }
+
 
     //animate the bullets
     auto bullet = begin(_bullets);
@@ -51,7 +72,7 @@ void MineStormGame::step()
         }
         else{
             //tests if the bullet collides a mine
-            auto mine = begin(_mines);
+            mine = begin(_mines);
             bool isShot = false;
             while(mine != end(_mines) && isShot == false){
                 if(mine->isAlive() && mine->isIntersecting(*bullet)){
@@ -105,9 +126,10 @@ void MineStormGame::draw(QPainter &painter, QRect &rect)
     // We set the background color to black
     painter.fillRect(rect, blackColor);
 
-    //draw spaceship
-    _spaceship->draw(painter);
-
+    if(_playerAlive){
+        //draw spaceship
+        _spaceship->draw(painter);
+    }
     //draw the mines
     for(auto &mine: _mines){
         mine.draw(painter);
