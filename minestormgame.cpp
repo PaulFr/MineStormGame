@@ -16,13 +16,14 @@ void MineStormGame::initialize()
     _bullets.clear();
     _bursts.clear();
 
+    spawnMines(8,5);
+    spawnMines(13, 20);
+    spawnMines(20, 5);
+
     _spaceship = new Spaceship(QPoint(size().width()/2, size().height()/2));
     _spaceship->setBoundaries(size());
     _playerAlive = true;
 
-    spawnMines(8,5);
-    spawnMines(13, 20);
-    spawnMines(20, 5);
 }
 
 void MineStormGame::step()
@@ -45,7 +46,7 @@ void MineStormGame::step()
     auto mine = begin(_mines);
     while(mine != end(_mines)){
         mine->step();
-        if(_playerAlive && mine->isIntersecting(*_spaceship)){
+        if(_playerAlive && mine->isAlive() && mine->isIntersecting(*_spaceship)){
             Burst nBurst(Burst(mine->getPosition(), 40));
             nBurst.setBoundaries(size());
             _bursts.push_back(nBurst);
