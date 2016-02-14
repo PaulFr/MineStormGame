@@ -64,6 +64,10 @@ public:
      */
     QPoint getPosition();
 
+    /**
+     * @brief setBoundaries : Set the limits the object should stay in. If the object is overflowing, it respawns the other side
+     * @param boundaries
+     */
     void setBoundaries(QSize boundaries);
 protected:
     QPoint _position;

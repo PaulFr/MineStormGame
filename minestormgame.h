@@ -25,9 +25,23 @@ class MineStormGame : public Game
         void mouseReleased( int x, int y) override;
         void mouseMoved(int x, int y) override;
         ~MineStormGame();
+        /**
+         * @brief keyHandler : Manage the game keys inputs
+         * @param key pressed
+         * @param isPressed is the key pressed or released?
+         * @return
+         */
         bool keyHandler(int key, bool isPressed);
+        /**
+         * @brief spawnMines : Randomly creates mines
+         * @param size : size of the mines
+         * @param nbItem : amount of mines
+         */
         void spawnMines(int size, int nbItem);
 protected:
+        /**
+         * @brief fireBullet : creates a bullet fired by the spaceship
+         */
         void fireBullet();
 private:
 
