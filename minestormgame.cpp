@@ -46,10 +46,29 @@ void MineStormGame::step()
     auto bullet = begin(_bullets);
     while (bullet != end(_bullets)) {
         bullet->step();
-        if (!bullet->isAlive())
+        if (!bullet->isAlive()){
             bullet = _bullets.erase(bullet);
-        else
-            ++bullet;
+        }
+        else{
+            //tests if the bullet collides a mine
+            auto mine = begin(_mines);
+            bool isShot = false;
+            while(mine != end(_mines) && isShot == false){
+                if(mine->isAlive() && mine->isIntersecting(*bullet)){
+                    //The bullet got it
+                    isShot = true;
+                    mine = _mines.erase(mine);
+                }else{
+                    ++mine;
+                }
+            }
+            if(isShot){
+                bullet = _bullets.erase(bullet);
+            }else{
+                ++bullet;
+            }
+
+        }
     }
 }
 

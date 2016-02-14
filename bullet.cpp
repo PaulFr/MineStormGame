@@ -14,5 +14,11 @@ void Bullet::draw(QPainter &painter){
 }
 
 QPolygon Bullet::getPolygonShape(){
-    return QPolygon();
+    QPolygon bullet;
+    bullet << QPoint(_position.x()-2.5, _position.y()+2.5)
+           << QPoint(_position.x()+2.5, _position.y()+2.5)
+           << QPoint(_position.x()+2.5, _position.y()-2.5)
+           << QPoint(_position.x()-2.5, _position.y()-2.5)
+           << QPoint(_position.x()-2.5, _position.y()+2.5);
+    return bullet;
 }
