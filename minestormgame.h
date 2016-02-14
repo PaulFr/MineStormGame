@@ -18,6 +18,7 @@
 #include "mine.h"
 #include "bullet.h"
 #include "burst.h"
+#include "minilifespaceship.h"
 #include <random>
 
 using namespace std;
@@ -76,6 +77,11 @@ private:
         vector<Mine> _mines;
         vector<Bullet> _bullets;
         vector<Burst> _bursts;
+        /**
+         * @brief drawRemainingLives : Draws the remaining lives to inform the player
+         * @param painter
+         */
+        void drawRemainingLives(QPainter &painter);
 };
 
 #endif // MINESTORMGAME_H

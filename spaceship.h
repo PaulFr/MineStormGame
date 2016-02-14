@@ -31,7 +31,9 @@ public:
 protected:
     QPolygon getPolygonShape();
     int _velocity = 0;
+    int _shipSize = 15;
     QPoint _defaultPosition;
+    void setSize(int shipSize);
 private:
     /**
      * @brief getAbsolutePoint : Get the absolute point, with angle

@@ -7,6 +7,7 @@ Mine::Mine(int size, QPoint position):PhysicalObject(position)
 {
     _size = size;
     _framesBeforeAlive = 3+(rand()%300);
+    _color = QColor(217,217,217);
     //qDebug() << "Hop : " << _framesBeforeAlive;
 }
 

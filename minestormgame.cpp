@@ -120,11 +120,28 @@ void MineStormGame::step()
     }
 
     //checks lives
-    if(_lives <= 0){
+    if(_lives <= 0 && _bursts.size() == 0){
         QMessageBox loseMsg;
         loseMsg.setText("Dommage, t'as perdu !");
         loseMsg.exec();
         reset();
+    }
+
+    //checks if player wins
+    if(_playerAlive && _mines.size() == 0 && _bursts.size() == 0){
+        QMessageBox winMsg;
+        winMsg.setText("Impressionnant ! Tu as gagné avec un score de "+QString::number(_score));
+        winMsg.exec();
+        reset();
+    }
+
+}
+
+void MineStormGame::drawRemainingLives(QPainter &painter){
+    QPoint firstPoint(QPoint(size().width()-(20*_lives), size().height()-30));
+    for(int i=0; i < _lives; i++){
+        MiniLifeSpaceship life(MiniLifeSpaceship(QPoint(firstPoint.x()+(i*20), firstPoint.y())));
+        life.draw(painter);
     }
 }
 
@@ -157,10 +174,10 @@ void MineStormGame::draw(QPainter &painter, QRect &rect)
     pen.setWidth(0);
     pen.setCosmetic(false);
     painter.setPen(pen);
-    if(_playerAlive){
-        //draw spaceship
-        _spaceship->draw(painter);
-    }
+
+    //Draw the lives
+    drawRemainingLives(painter);
+
     //draw the mines
     for(auto &mine: _mines){
         mine.draw(painter);
@@ -169,6 +186,11 @@ void MineStormGame::draw(QPainter &painter, QRect &rect)
     //draw the bullets
     for(auto &bullet: _bullets){
         bullet.draw(painter);
+    }
+
+    if(_playerAlive){
+        //draw spaceship
+        _spaceship->draw(painter);
     }
 
     //draw the air (maybe space but that is weird considering there is no air in space) bursts

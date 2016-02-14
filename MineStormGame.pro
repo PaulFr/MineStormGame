@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     mine.cpp \
     ephemeralobject.cpp \
     bullet.cpp \
-    burst.cpp
+    burst.cpp \
+    minilifespaceship.cpp
 
 HEADERS  += mainwindow.h \
     controller.h \
@@ -32,4 +33,5 @@ HEADERS  += mainwindow.h \
     mine.h \
     ephemeralobject.h \
     bullet.h \
-    burst.h
+    burst.h \
+    minilifespaceship.h

@@ -50,15 +50,20 @@ void Spaceship::updateAcceleration(bool accelerate) {
 QPolygon Spaceship::getPolygonShape(){
     QPolygon shipShape;
 
-    shipShape << getAbsolutePoint(QPoint(-15, 0))
-    << getAbsolutePoint(QPoint(-7.5, 15))
-    << getAbsolutePoint(QPoint(0, 7.5))
-    << getAbsolutePoint(QPoint(7.5, 15))
-    << getAbsolutePoint(QPoint(15, 0))
-    << getAbsolutePoint(QPoint(0, -30))
-    << getAbsolutePoint(QPoint(-15, 0));
+    shipShape << getAbsolutePoint(QPoint(-_shipSize, 0))
+    << getAbsolutePoint(QPoint(-(_shipSize/2), _shipSize))
+    << getAbsolutePoint(QPoint(0, _shipSize/2))
+    << getAbsolutePoint(QPoint(_shipSize/2, _shipSize))
+    << getAbsolutePoint(QPoint(_shipSize, 0))
+    << getAbsolutePoint(QPoint(0, -(_shipSize*2)))
+    << getAbsolutePoint(QPoint(-_shipSize, 0));
 
 
 
     return shipShape;
+}
+
+void Spaceship::setSize(int shipSize)
+{
+    _shipSize = shipSize;
 }
